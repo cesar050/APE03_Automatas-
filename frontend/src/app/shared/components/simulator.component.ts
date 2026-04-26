@@ -60,6 +60,16 @@ import { SimulationResult, AutomataDefinition } from '../models/automata.model';
         <div class="def-item"><span>F — Estados de aceptación</span><strong>{{ definition.accepting.join(', ') }}</strong></div>
       </div>
 
+      <ng-container *ngIf="alphabetLegend.length">
+        <p class="section-title">Leyenda del Alfabeto</p>
+        <div class="definition">
+          <div class="def-item" *ngFor="let item of alphabetLegend">
+            <span>{{ item.symbol }}</span>
+            <strong>{{ item.meaning }}</strong>
+          </div>
+        </div>
+      </ng-container>
+
       <p class="section-title">Tabla de Transiciones (δ)</p>
       <div class="transitions">
         <table>
@@ -134,6 +144,7 @@ export class SimulatorComponent implements OnChanges {
   @Input() result: SimulationResult | null = null;
   @Input() diagramImage: string = '';
   @Output() simulate = new EventEmitter<string[]>();
+  @Input() alphabetLegend: { symbol: string; meaning: string }[] = [];
 
   inputRaw = '';
 
