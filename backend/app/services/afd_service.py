@@ -26,18 +26,52 @@ def _run_afd(model: AfdModel, cadena: list) -> dict:
 
 
 def simulate_banking(cadena: list) -> dict:
-    # TODO: compañero — AFD Validador Bancario
-    # Patrón: AUTORIZACIÓN -> CAPTURA -> LIQUIDACIÓN
-    raise NotImplementedError
+    model = AfdModel(
+        states=['q0', 'q1', 'q2', 'q3', 'q4'],
+        #Autorizar: a, Capturar: b, Liquidar: d, Cancelar: e
+        alphabet=['a', 'b', 'd', 'e'],
+        transitions={
+            'q0':{'a': 'q1', 'e': 'q4'},
+            'q1':{'b': 'q2', 'e': 'q4'},
+            'q2':{'d': 'q3', 'e': 'q4'},
+            'q3':{},
+            'q4':{},
+        },
+        initial='q0',
+        accepting=['q3']
+    )
+    return _run_afd(model, cadena)
 
 
 def simulate_lock(cadena: list) -> dict:
-    # TODO: compañero — AFD Cerradura Inteligente
-    # Bloqueo tras 3 intentos fallidos
-    raise NotImplementedError
+    model = AfdModel(
+        states=['q0', 'q1', 'q2', 'q3', 'q4'],
+        #Incorrecta: i, Correcta: c
+        alphabet=['c', 'i'],
+        transitions={
+            'q0':{'i': 'q1', 'c': 'q4'},
+            'q1':{'i': 'q2', 'c': 'q4'},
+            'q2':{'i': 'q3', 'c': 'q4'},
+            'q3':{},
+            'q4':{}
+        },
+        initial='q0',
+        accepting=['q4']
+    )
+    return _run_afd(model, cadena)
 
-
-def simulate_scientific(cadena: str) -> dict:
-    # TODO: compañero — AFD Notación Científica
-    # Ej: +3.14e-10, .5e2
-    raise NotImplementedError
+def simulate_handshake(cadena: str) -> dict:
+    model = AfdModel(
+        states=['q0', 'q1', 'q2', 'q3', 'q4'],
+        alphabet=['a', 'b', 'c'],
+        transitions={
+          'q0':{'a':'q1', 'b':'q4', 'c':'q4'},
+          'q1':{'b':'q2', 'a':'q4', 'c':'q4'},
+          'q2':{'c':'q3', 'a':'q4', 'b':'q4'},
+          'q3':{},
+          'q4':{}
+        },
+        initial='q0',
+        accepting=['q3']
+    )
+    return _run_afd(model, cadena)
