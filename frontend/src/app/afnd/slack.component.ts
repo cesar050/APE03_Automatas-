@@ -8,14 +8,17 @@ import { SimulationResult, AutomataDefinition } from '../shared/models/automata.
   selector: 'app-slack',
   standalone: true,
   imports: [CommonModule, SimulatorComponent],
-  template: `<app-simulator
-    title="AFND — Sintaxis Mensajería Slack"
-    subtitle="Valida el patrón: @bot (USER)? (!cmd | ?help)"
-    placeholder="ej: @bot, USER, !cmd"
-    [definition]="definition"
-    [examples]="examples"
-    [result]="result"
-    (simulate)="onSimulate($event)"/>`
+  template: `
+    <app-simulator
+      title="AFND — Sintaxis Mensajería Slack"
+      subtitle="Valida el patrón: @bot (USER)? (!cmd | ?help)"
+      placeholder="ej: @bot, USER, !cmd"
+      [definition]="definition"
+      [examples]="examples"
+      [result]="result"
+      [diagramImage]="'diagrams/slack.png'"
+      (simulate)="onSimulate($event)"/>
+  `
 })
 export class SlackComponent {
   result: SimulationResult | null = null;

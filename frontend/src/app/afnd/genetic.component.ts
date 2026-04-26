@@ -8,14 +8,17 @@ import { SimulationResult, AutomataDefinition } from '../shared/models/automata.
   selector: 'app-genetic',
   standalone: true,
   imports: [CommonModule, SimulatorComponent],
-  template: `<app-simulator
-    title="AFND — Secuencias Genéticas"
-    subtitle="Reconoce el patrón proteico: K G X* F"
-    placeholder="ej: K, G, A, F"
-    [definition]="definition"
-    [examples]="examples"
-    [result]="result"
-    (simulate)="onSimulate($event)"/>`
+  template: `
+    <app-simulator
+      title="AFND — Secuencias Genéticas"
+      subtitle="Reconoce el patrón proteico: K G X* F"
+      placeholder="ej: K, G, A, F"
+      [definition]="definition"
+      [examples]="examples"
+      [result]="result"
+      [diagramImage]="'diagrams/genetica.png'"
+      (simulate)="onSimulate($event)"/>
+  `
 })
 export class GeneticComponent {
   result: SimulationResult | null = null;

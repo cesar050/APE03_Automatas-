@@ -8,14 +8,17 @@ import { SimulationResult, AutomataDefinition } from '../shared/models/automata.
   selector: 'app-iot',
   standalone: true,
   imports: [CommonModule, SimulatorComponent],
-  template: `<app-simulator
-    title="AFND — Telemetría IoT"
-    subtitle="Valida que un paquete IoT tenga la estructura: HDR (TEMP | HUM)* CRC"
-    placeholder="ej: HDR, TEMP, CRC"
-    [definition]="definition"
-    [examples]="examples"
-    [result]="result"
-    (simulate)="onSimulate($event)"/>`
+  template: `
+    <app-simulator
+      title="AFND — Telemetría IoT"
+      subtitle="Valida que un paquete IoT tenga la estructura: HDR (TEMP | HUM)* CRC"
+      placeholder="ej: HDR, TEMP, CRC"
+      [definition]="definition"
+      [examples]="examples"
+      [result]="result"
+      [diagramImage]="'diagrams/IoT.png'"
+      (simulate)="onSimulate($event)"/>
+  `
 })
 export class IotComponent {
   result: SimulationResult | null = null;
